@@ -7,22 +7,23 @@ from shutil import move
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
+# File paths
 source_dir = "C:/Users/alex_/Downloads"
 dest_dir_audio = "C:/Users/alex_/Downloads/Audio"
 dest_dir_video = "C:/Users/alex_/Downloads/Video"
 dest_dir_image = "C:/Users/alex_/Downloads/Images"
 dest_dir_documents = "C:/Users/alex_/Downloads/Documents"
 
-# ? supported image types
+# Supported image types
 image_exts = [".jpg", ".jpeg", ".jpe", ".jif", ".jfif", ".jfi", ".png", ".gif", ".webp", ".tiff", ".tif", ".psd",
               ".raw", ".arw", ".cr2", ".nrw", ".k25", ".bmp", ".dib", ".heif", ".heic", ".ind", ".indd", ".indt",
               ".jp2", ".j2k", ".jpf", ".jpf", ".jpx", ".jpm", ".mj2", ".svg", ".svgz", ".ai", ".eps", ".ico"]
-# ? supported Video types
+# Supported Video types
 video_exts = [".webm", ".mpg", ".mp2", ".mpeg", ".mpe", ".mpv", ".ogg", ".mp4", ".mp4v", ".m4v", ".avi", ".wmv",
               ".mov", ".qt", ".flv", ".swf", ".avchd"]
-# ? supported Audio types
+# Supported Audio types
 audio_exts = [".m4a", ".flac", "mp3", ".wav", ".wma", ".aac"]
-# ? supported Document types
+# Supported Document types
 document_exts = [".doc", ".docx", ".odt", ".pdf", ".xls", ".xlsx", ".ppt", ".pptx"]
 
 
@@ -62,9 +63,11 @@ class MoveHandler(FileSystemEventHandler):
 
 
 def move_file(dest, file, name):
+    # Create directory if not exists
     if not exists(dest):
         makedirs(dest)
 
+    # If file exists, add unique name
     if exists(f"{dest}/{name}"):
         unique_name = create_unique(dest, name)
         prevName = join(dest, name)
@@ -73,6 +76,7 @@ def move_file(dest, file, name):
     move(file, dest)
 
 
+# Create unique name if file already exists
 def create_unique(dest, name):
     filename, ext = splitext(name)
     file_number = 1

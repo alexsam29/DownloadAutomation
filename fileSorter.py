@@ -7,7 +7,7 @@ from shutil import move
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
-# Directories
+# Directories. Replace with your preferred directories.
 source_dir = "C:/Users/alex_/Downloads"
 dest_dir_audio = "C:/Users/alex_/Downloads/Audio"
 dest_dir_video = "C:/Users/alex_/Downloads/Video"
